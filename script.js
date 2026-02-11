@@ -95,6 +95,12 @@ function addWord() {
     const input = document.getElementById('newWord');
     const word = input.value.trim().toUpperCase();
 
+    // FIX FOR BUG #1 (REQ-WB-02): Prevent empty words
+    if (word === "") {
+        alert("Empty words are not allowed!");
+        return; // Exits the function so the word isn't added
+    }
+
     wordBank.push(word);
     input.value = '';
     saveWordBank();
