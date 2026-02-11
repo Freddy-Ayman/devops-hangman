@@ -301,21 +301,24 @@ function gameWon() {
     gameState.gameActive = false;
     
     if (gameState.currentPlayer === 1) {
-        gameState.player2.score += 10;
-        document.getElementById('score2').textContent = gameState.player2.score;
-    } else {
         gameState.player1.score += 10;
         document.getElementById('score1').textContent = gameState.player1.score;
+    } else {
+        gameState.player2.score += 10;
+        document.getElementById('score2').textContent = gameState.player2.score;
     }
     
     const statusDiv = document.getElementById('gameStatus');
     const statusMsg = document.getElementById('statusMessage');
     
     const winnerName = gameState.currentPlayer === 1 ? 
-        gameState.player2.name : gameState.player1.name;
+        gameState.player1.name : gameState.player2.name;
     
     statusMsg.textContent = `🎉 ${winnerName} won! The word was: ${gameState.currentWord}`;
     statusDiv.classList.add('show', 'winner');
+    
+    // Switch to next player
+    gameState.currentPlayer = gameState.currentPlayer === 1 ? 2 : 1;
 }
 
 function gameLost() {
