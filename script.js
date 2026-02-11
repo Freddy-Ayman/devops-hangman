@@ -155,7 +155,12 @@ function editWord(index) {
 }
 
 function deleteWord(index) {
+    // REQ-WB-04: User MUST be prompted for confirmation before deletion
     if (confirm('Are you sure you want to delete this word?')) {
+        // FIX: Actually remove the word from the array at the given index
+        wordBank.splice(index, 1); 
+        
+        // REQ-WB-05 & 06: Save changes and update the UI/Word Count
         saveWordBank();
         displayWordBank();
     }
