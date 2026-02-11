@@ -146,6 +146,12 @@ function startGame() {
         return;
     }
     
+    // Validate that names are different
+    if (p1Name === p2Name) {
+        alert('Player 1 and Player 2 must have different names');
+        return;
+    }
+    
     gameState.player1.name = p1Name;
     gameState.player2.name = p2Name;
     
