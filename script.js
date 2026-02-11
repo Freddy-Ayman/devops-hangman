@@ -107,6 +107,14 @@ function addWord() {
         return; // Stop the function so the duplicate isn't added
     }
 
+    // FIX FOR BUG #3 (REQ-WB-02): Only allow A-Z
+    // This regex checks if the string contains ONLY letters from A to Z
+    const onlyLetters = /^[A-Z]+$/;
+    if (!onlyLetters.test(word)) {
+        alert("Words must only contain letters (A-Z). No numbers or symbols allowed!");
+        return;
+    }
+
     wordBank.push(word);
     input.value = '';
     saveWordBank();
