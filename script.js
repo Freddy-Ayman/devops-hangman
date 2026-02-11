@@ -195,6 +195,10 @@ function guessLetter(letter) {
     
     gameState.guessedLetters.push(letter);
     
+    // Disable the button
+    const button = document.getElementById('key-' + letter);
+    button.disabled = true;
+    
     if (!gameState.currentWord.includes(letter)) {
         gameState.wrongGuesses++;
         updateHangman();
