@@ -136,8 +136,18 @@ function startGame() {
     const p1Name = document.getElementById('player1Name').value.trim();
     const p2Name = document.getElementById('player2Name').value.trim();
     
-    gameState.player1.name = p1Name || 'Player 1';
-    gameState.player2.name = p2Name || 'Player 2';
+    // Validate that names are not empty
+    if (!p1Name) {
+        alert('Player 1 name cannot be empty');
+        return;
+    }
+    if (!p2Name) {
+        alert('Player 2 name cannot be empty');
+        return;
+    }
+    
+    gameState.player1.name = p1Name;
+    gameState.player2.name = p2Name;
     
     document.getElementById('player1Display').textContent = gameState.player1.name;
     document.getElementById('player2Display').textContent = gameState.player2.name;
