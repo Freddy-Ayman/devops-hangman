@@ -122,12 +122,36 @@ function addWord() {
 }
 
 function editWord(index) {
-    const newWord = prompt('Edit word:', wordBank[index]);
-    if (newWord) {
-        wordBank.splice(index, 1);
-        saveWordBank();
-        displayWordBank();
+    const oldWord = wordBank[index];
+    const newWord = prompt('Edit word:', oldWord);
+    
+    // If user cancels the prompt, do nothing
+    if (newWord === null) return;
+
+    const formattedWord = newWord.trim().toUpperCase();
+
+    // REQ-WB-03: Apply same validation rules as adding words
+    if (formattedWord === "") {
+        alert("Word cannot be empty!");
+        return;
     }
+
+    if (wordBank.includes(formattedWord) && formattedWord !== oldWord) {
+        alert("This word already exists in the bank!");
+        return;
+    }
+
+    const onlyLetters = /^[A-Z]+$/;
+    if (!onlyLetters.test(formattedWord)) {
+        alert("Words must only contain letters (A-Z)!");
+        return;
+    }
+
+    // FIX: Update the word at the specific index instead of just splicing it away
+    wordBank[index] = formattedWord; 
+    
+    saveWordBank();
+    displayWordBank();
 }
 
 function deleteWord(index) {
