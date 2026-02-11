@@ -235,7 +235,7 @@ function updateWrongLetters() {
 }
 
 function updateLives() {
-    const livesLeft = gameState.maxWrong - gameState.wrongGuesses + 1;
+    const livesLeft = gameState.maxWrong - gameState.wrongGuesses;
     document.getElementById('livesLeft').textContent = livesLeft;
 }
 
